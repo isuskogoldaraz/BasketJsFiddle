@@ -33,6 +33,7 @@ function dalePower() {
 function tiroCanasta(tanto) {
   alert('Tiro de '+ tanto + '¡¡power!!' + tiro.power);
   function sumaTanto(m,t) {
+   	alert('¡ ¡ CANASTA ! !');
     m.puntos += tanto;
     m.tiros += 1;
     tiro.power = 0;
@@ -44,17 +45,14 @@ function tiroCanasta(tanto) {
     marcador.tiros+=1;
     muestraMarcador(marcador);
   }
-return tanto == 1 && tiro.power>5 && tiro.power<10 ?
- 	sumaTanto(marcador,tanto) :
- 	fallaTiro();
-return tanto == 2 && tiro.power>13 && tiro.power<17 ?
-	sumaTanto(marcador,tanto) :
-	fallaTiro();
-return tanto == 3 && tiro.power>19 && tiro.power<22 ?
-	sumaTanto(marcador,tanto) :
+if(tanto === 1 && tiro.power>5 && tiro.power<10)
+ 	return sumaTanto(marcador,tanto)
+if(tanto === 2 && tiro.power>12 && tiro.power<15)
+	return sumaTanto(marcador,tanto)
+if(tanto == 3 && tiro.power>15 && tiro.power<20)
+ 	return sumaTanto(marcador,tanto)
  	fallaTiro();
 }
-//////////////////////////////////////
 function muestraMarcador(obj) {
   document.getElementById('puntos').innerHTML = 'Puntos: ' + obj.puntos;
   document.getElementById('marcador').innerHTML = 'Tiros: ' + obj.tiros;
