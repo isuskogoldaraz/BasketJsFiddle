@@ -54,6 +54,7 @@ return tanto == 3 && tiro.power>19 && tiro.power<22 ?
 	sumaTanto(marcador,tanto) :
  	fallaTiro();
 }
+//////////////////////////////////////
 function muestraMarcador(obj) {
   document.getElementById('puntos').innerHTML = 'Puntos: ' + obj.puntos;
   document.getElementById('marcador').innerHTML = 'Tiros: ' + obj.tiros;
