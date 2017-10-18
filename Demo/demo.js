@@ -1,3 +1,44 @@
+var timers = {
+	timerID: 0,
+	buffer: [],
+	add: function(fn){
+		this.buffer.push(fn);
+	},
+	start: function(){
+		if(this.timerID) return;
+		(function runBuffer(){
+		if(timers.buffer.length > 0){	
+			for(var i = 0; i< timers.buffer.length; i++){
+				if(timers.buffer[i]() === false){
+				timers.buffer.splice(i,1);
+				i--;		
+				}
+			}
+		timers.timerID = setTimeout(runBuffer, 0);
+		}
+		})();
+		}
+	},
+	stop: function(){
+		clearTimeout(this.timerID);
+		this.timerID = 0;
+	}
+};
+var reloj = {};
+Object.defineProperty(reloj, 'time', {
+	value: 1,
+	writeble: true,
+	enumerable: true,
+	configurable: false
+});
+function muestraCronometro(time){
+  document.getElementById('cronometro').innerHTML = 'Tiempo: '+time+' segundos';
+}
+window.setTimeout(function(){
+	reloj 
+},1000);
+
+/////////////////////////////////////
 var marcador = {};
 function nuevoMarcador(obj, val) {
   Object.defineProperty(obj, 'puntos', {
@@ -59,10 +100,6 @@ function muestraMarcador(obj) {
 }
 muestraMarcador(marcador);
 
-function muestraCronometro(time){
-  document.getElementById('cronometro').innerHTML = 'Tiempo: '+time;
-}
-muestraCronometro('00:00');
 function muestraPower(power){
   document.getElementById('power').value = power;
   document.getElementById('power').innerHTML = 'Power: '+power;
