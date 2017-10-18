@@ -14,7 +14,7 @@ var timer = {
 					i--;
 				}
 			}
-			timer.timerID = setTimeout(bufferRunNext,0);
+			timer.timerID = setTimeout(bufferRunNext,1000);
 			}
 		})();
 	},
@@ -32,10 +32,6 @@ Object.defineProperty(reloj,'tiempo',{
   enumerable: true,
   configurable: false
 });
-function muestraTiempo(){
-  document.getElementById('cronometro').innerText = 'Tiempo: '+reloj.tiempo+' segundos';
-  return reloj.tiempo == 60 ?  false : setTimeout(muestraTiempo,1000);
-}
 /////////////////////////////////////
 
 var marcador = {};
@@ -92,6 +88,16 @@ if(tanto === 2 && tiro.power>12 && tiro.power<15)
 if(tanto == 3 && tiro.power>15 && tiro.power<20)
  	return sumaTanto(marcador,tanto)
  	fallaTiro();
+}
+function muestraTiempo(){
+	if(reloj.tiempo < 100 ){
+  document.getElementById('cronometro').innerText = 'Tiempo: '+(reloj.tiempo++)+' segundos';
+  }
+  else
+  {
+  document.getElementById('cronometro').innerText = 'Tiempo: '+(reloj.tiempo)+' se acaboel tiempo';
+  false
+  }
 }
 function muestraMarcador(obj) {
   document.getElementById('puntos').innerHTML = 'Puntos: ' + obj.puntos;
